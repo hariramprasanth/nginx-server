@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nginx-chart.fullname" . }}
+  labels:
+    app: nginx-app-helm
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: nginx-app-helm
+  template:
+    metadata:
+      labels:
+        app: nginx-app-helm
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: nginx:latest
+          ports:
+            - name: http
+              containerPort: {{ .Values.service.port }}
+              protocol: TCP
