@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: {{ .Chart.Name }}
-          image: nginx:latest
+          image: nginx:1.25
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
